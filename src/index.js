@@ -1,5 +1,6 @@
 import express from "express";
-import jsonwebtoken from "jsonwebtoken";
+
+import jwt from "jsonwebtoken";
 import connectDB from "./services/db.js";
 // Rutas
 import usersRouter from "./routes/users.js";
@@ -24,7 +25,7 @@ const authenticateJWT = (req, res, next) => {
     req.user = verified;
     next();
   } catch (err) {
-    res.status(400).json({ message: "Token inválido" });
+    res.status(400).json({ message: "Token inválido" + err });
   }
 };
 
